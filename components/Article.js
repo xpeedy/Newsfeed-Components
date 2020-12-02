@@ -86,6 +86,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: "im here hahahahhahaha",
+    date: "Oct 28,2020",
+    firstParagraph:"lmaolmaolmoalmaolmaolmaolmao",
+    secondParagraph: "lololololololololololo",
+    thirdParagraph: "yoloyolyolyolyolyolyolyolyoyolo"
   }
 ];
 
@@ -114,3 +121,47 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker(artObj){
+  const article = document.createElement("div")//main div
+  article.classList.add("article")// adds class name for article div
+  let h2 = document.createElement("h2");
+  h2.textContent = artObj.title;
+  
+  let date = document.createElement("p");
+  date.textContent = artObj.date;
+  date.classList.add("date");
+  //<----this creates the paragraphs--->
+  let paragraph1 = document.createElement("p")
+  paragraph1.textContent = artObj.firstParagraph;
+
+  let paragraph2 = document.createElement("p")
+  paragraph2.textContent = artObj.secondParagraph;
+
+  let paragraph3 = document.createElement("p")
+  paragraph3.textContent = artObj.thirdParagraph;
+  //<----this creates the span--->
+  let span = document.createElement("span")
+  span.classList.add("expandButton");
+  span.textContent = "+"
+  span.addEventListener("click",(event) => { //this changes the class name to "article-open"
+    article.classList.toggle("article-open") //toggle changes the class name when the event is fire 
+  })
+  //<---Add everything to article which is the div that contains everything--->
+  article.appendChild(h2)
+  article.appendChild(date)
+  article.appendChild(paragraph1)
+  article.appendChild(paragraph2)
+  article.appendChild(paragraph3)
+  article.appendChild(span)
+  //<--dont forget to return-->
+  return article;
+}
+
+let articles = document.querySelector(".articles")// selects the class .articles that we created at the top of func
+
+data.forEach((obj) => {//loops over the data of objects
+  let article = articleMaker(obj);//assings the function to a variable
+  articles.appendChild(article)//adds every article to articles(.articles) which is the main div
+})
+
