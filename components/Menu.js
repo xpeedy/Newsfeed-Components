@@ -39,12 +39,13 @@ function menuMaker(array){
   let list = document.createElement("ul")
   array.forEach(element => {
     let menuItem = document.createElement("li")
+    menuItem.href = "#"
     menuItem.textContent = element;
     list.appendChild(menuItem)
   });
 
   let menuButton = document.querySelector(".menu-button")
-  menuButton.addEventListener("click",(event) => {
+  menuButton.addEventListener("click",() => {
     menu.classList.toggle("menu--open")
   })
   menuButton.appendChild(menu)

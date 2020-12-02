@@ -123,15 +123,15 @@ const data = [
 */
 
 function articleMaker(artObj){
-  const article = document.createElement("div")
-  article.classList.add("article")
+  const article = document.createElement("div")//main div
+  article.classList.add("article")// adds class name for article div
   let h2 = document.createElement("h2");
   h2.textContent = artObj.title;
   
-  let p = document.createElement("p");
-  p.textContent = artObj.date;
-  p.classList.add("date");
-
+  let date = document.createElement("p");
+  date.textContent = artObj.date;
+  date.classList.add("date");
+  //<----this creates the paragraphs--->
   let paragraph1 = document.createElement("p")
   paragraph1.textContent = artObj.firstParagraph;
 
@@ -140,26 +140,28 @@ function articleMaker(artObj){
 
   let paragraph3 = document.createElement("p")
   paragraph3.textContent = artObj.thirdParagraph;
-
+  //<----this creates the span--->
   let span = document.createElement("span")
   span.classList.add("expandButton");
   span.textContent = "+"
-  span.addEventListener("click",(event) => {
-    article.classList.toggle("article-open")
+  span.addEventListener("click",(event) => { //this changes the class name to "article-open"
+    article.classList.toggle("article-open") //toggle changes the class name when the event is fire 
   })
+  //<---Add everything to article which is the div that contains everything--->
   article.appendChild(h2)
-  article.appendChild(p)
+  article.appendChild(date)
   article.appendChild(paragraph1)
   article.appendChild(paragraph2)
   article.appendChild(paragraph3)
   article.appendChild(span)
+  //<--dont forget to return-->
   return article;
 }
 
-let articles = document.querySelector(".articles")
+let articles = document.querySelector(".articles")// selects the class .articles that we created at the top of func
 
-data.forEach((item) => {
-  let article = articleMaker(item);
-  articles.appendChild(article)
+data.forEach((obj) => {//loops over the data of objects
+  let article = articleMaker(obj);//assings the function to a variable
+  articles.appendChild(article)//adds every article to articles(.articles) which is the main div
 })
 
